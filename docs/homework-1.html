@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Homework 1</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="homework-1">Homework 1</h1>
+<p>Ishan Pranav</p>
+<p>September 18, 2024</p>
+<p>Professor Yang Tang</p>
+<p>CSCI 202 Operating Systems</p>
+<h2 id="question-1">Question 1</h2>
+<blockquote>
+<p>Alice is writing a simple program to practice the use of pointers. She uses
+the function add() to calculate the sum of two integers. Instead of returning
+the value, the function returns a pointer to the result.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+
+<span class="hljs-type">int</span> *<span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> 
+{ 
+    <span class="hljs-type">int</span> c = a + b; 
+    <span class="hljs-type">int</span> *d = &amp;c; 
+    <span class="hljs-keyword">return</span> d; 
+} 
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+{ 
+    <span class="hljs-type">int</span> *result = add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);  
+    
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;result = %d\n&quot;</span>, *result); 
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;result = %d\n&quot;</span>, *result); 
+}
+</code></pre>
+<blockquote>
+<p>Surprisingly, Alice notices that if she prints the result for the second time,
+the result is wrong! So she turns to you for help.</p>
+</blockquote>
+<h3 id="question-1-part-1">Question 1 Part 1</h3>
+<blockquote>
+<p>Can you explain what’s happening here?</p>
+</blockquote>
+<p>Alice is returning a pointer to a temporary stack-allocated value across
+function calls. This is a problem because it results in undefined behavior.</p>
+<h3 id="question-1-part-2">Question 1 Part 2</h3>
+<blockquote>
+<p>Alice insists that <code>add</code> should return a pointer. Can you propose a way to fix
+it?</p>
+</blockquote>
+<p>If Alice wants to return a pointer to a mutable object that contains the result,
+she should first dynamically allocate the result on the heap and return a
+pointer to the heap-allocated object. For example, if she called <code>malloc</code> and
+returned a pointer to the allocated memory, the program would work as expected.</p>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>Bob is playing with the UNIX/Linux shell, and he is confused about the
+following commands...</p>
+</blockquote>
+<blockquote>
+<p>Can you explain to Bob what each command does? What would happen if Bob
+executes these commands in order?</p>
+</blockquote>
+<pre><code class="language-sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;echo cat&#x27;</span> | <span class="hljs-built_in">cat</span> 
+</code></pre>
+<p>The <code>echo</code> statements writes a string to an output stream. The <code>|</code> (pipe)
+symbol &quot;pipes&quot; the output into the following instruction. The <code>cat</code>
+instruction concatenates an input stream with the standard output stream.</p>
+<pre><code class="language-sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;echo cat&#x27;</span> &gt; <span class="hljs-built_in">cat</span> 
+</code></pre>
+<p>The <code>&gt;</code> symbol writes the output into the following file path. Here <code>cat</code> is the
+name of the file that contains the text &quot;echo cat.&quot;</p>
+<pre><code class="language-sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;echo cat&#x27;</span> &gt;&gt; <span class="hljs-built_in">cat</span>
+</code></pre>
+<p>The <code>&gt;&gt;</code> symbol appends the output into the following file path. The <code>cat</code> file
+now contains the text &quot;echo cat&quot; on the first line followed by &quot;echo cat&quot; on the
+second line.</p>
+<pre><code class="language-sh"><span class="hljs-built_in">echo</span> `<span class="hljs-built_in">echo</span> <span class="hljs-built_in">cat</span>` | <span class="hljs-built_in">cat</span>
+</code></pre>
+<p>The <code>`</code> symbols cause the <code>echo cat</code> instruction enclosed within them to be
+executed first, and the output of that instruction is piped into the <code>cat</code>
+instructions. Thus, the string &quot;cat&quot; is written to the standard output stream.</p>
+<pre><code class="language-sh"><span class="hljs-built_in">cat</span> &lt; <span class="hljs-built_in">cat</span>
+</code></pre>
+<p>The <code>&lt;</code> symbol reads the file and writes its output into the preceding <code>cat</code>
+instruction. The contents of the cat file (&quot;echo cat&quot; on the first line and
+&quot;echo cat&quot; on the second line) are written to the standard output stream.</p>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>What is the difference between kernel and user mode? Explain how having two
+distinct modes aids in designing an operating system.</p>
+</blockquote>
+<p>Compared to user mode, kernel mode has advanced privileges, such as unrestricted
+hardware access. Having two distinct modes aids in designing an operating system
+in two ways. First, it provides a layer of information hiding and abstraction
+that makes application code (which executes in user mode) much simpler and more
+maintainable. Second, it provides safety and security, protecting the hardware
+from user error and malicious programs that execute in user mode.</p>
+<h2 id="question-4">Question 4</h2>
+<blockquote>
+<p>What is a trap instruction? Explain its use in operating systems.</p>
+</blockquote>
+<p>A trap instruction switches from user mode to kernel mode. In operating systems,
+a trap causes a software interrupt that is handled by the kernel.</p>
+<h2 id="question-5">Question 5</h2>
+<blockquote>
+<p>Instructions related to accessing I/O devices are typically privileged
+instructions, that is, they can be executed in kernel mode but not in user
+mode. Give a reason why these instructions are privileged.</p>
+</blockquote>
+<p>Instructions relating to accessing input and ouput devices are typically
+privileged instructions because they involve accessing hardware directly. For
+example, these include the monitor, keyboard, disk, external storage, printer,
+and other input and output devices. Requiring these devices to be accessed from
+user mode would force third-party applications to adapt their user code to many
+different hardware providers, which would be redundant and error-prone. Instead,
+device manufacturers, who know the most about the devices they produce, create
+tailored device drivers that execute in kernel mode. This protects users from
+the challenges of interoperability.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://unix.stackexchange.com/questions/27428/what-does-backquote-backtick-mean-in-commands">Backticks in Linux command</a></li>
+</ul>
+
+            
+            
+        </body>
+        </html>
