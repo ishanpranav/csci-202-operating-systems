@@ -66,7 +66,7 @@ including the zero terminator.
 
 ## Question 2
 
-> Bob just learned the exec family of system calls in his CS202 class, and he
+> Bob just learned the `exec` family of system calls in his CS202 class, and he
 > wants to try it out himself. So he writes the following program.
 
 ```c
@@ -144,7 +144,7 @@ int main()
 
 - The `fork` function fails when attempting to execeed the system's thread count
 limit.
-- The `exec*` function fails when the path or file name argument refers to a
+- The `exec*` functions fail when the path or file name argument refers to a
 file that does not exist.
 - The `wait` function fails when the calling process does not have any
 unwaited-for children.

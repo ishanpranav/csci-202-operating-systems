@@ -196,7 +196,7 @@ data (like <code>b</code>).</p>
 including the zero terminator.</p>
 <h2 id="question-2">Question 2</h2>
 <blockquote>
-<p>Bob just learned the exec family of system calls in his CS202 class, and he
+<p>Bob just learned the <code>exec</code> family of system calls in his CS202 class, and he
 wants to try it out himself. So he writes the following program.</p>
 </blockquote>
 <pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
@@ -268,7 +268,7 @@ fail: <code>fork</code>, <code>exec</code>, and <code>wait</code>.</p>
 <ul>
 <li>The <code>fork</code> function fails when attempting to execeed the system's thread count
 limit.</li>
-<li>The <code>exec*</code> function fails when the path or file name argument refers to a
+<li>The <code>exec*</code> functions fail when the path or file name argument refers to a
 file that does not exist.</li>
 <li>The <code>wait</code> function fails when the calling process does not have any
 unwaited-for children.</li>
