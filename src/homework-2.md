@@ -33,27 +33,36 @@ int main()
 }
 ```
 
-> Alice expects to see all four lines print 14. However, when she runs this program, she sees different results.
+> Alice expects to see all four lines print 14. However, when she runs this
+> program, she sees different results.
 
 ### Question 1 Part 1
 
 > Which line(s) prints 14? Why?
 
-Only line (a) prints 14. Although arrays "decay" into pointers in C, they are actually treated differently from a language perspective. Since `a` is a stack-allocated array, the `sizeof` operator returns its size in bytes: 14.
+Only line (a) prints 14. Although arrays "decay" into pointers in C, they are
+actually treated differently from a language perspective. Since `a` is a
+stack-allocated array, the `sizeof` operator returns its size in bytes: 14.
 
 ### Question 1 Part 2
 
 > What do other line(s) print? Why?
 
-Meanwhile, `b` is written as a pointer, not an array, so the `sizeof` operator returns the size of the pointer: for example, 8 on a 64-bit architecture. When `a` is passed to `f`, it "decays" into a pointer, so it too has size 8. Of course, when `b` is passed to `f` the result is 8 as well.
+Meanwhile, `b` is written as a pointer, not an array, so the `sizeof` operator
+returns the size of the pointer: for example, 8 on a 64-bit architecture. When
+`a` is passed to `f`, it "decays" into a pointer, so it too has size 8. Of
+course, when `b` is passed to `f` the result is 8 as well.
 
 ### Question 1 Part 3
 
 > In fact, `sizeof` shouldn't be used to get the length of a string at all. Why?
 
-The `sizeof` operator should not be used to obtain the length of a string because strings may be stack allocated (like `a`), heap allocated, or stored as data (like `b`).
+The `sizeof` operator should not be used to obtain the length of a string
+because strings may be stack allocated (like `a`), heap allocated, or stored as
+data (like `b`).
 
-Instead, the `strlen` function computes the length of the string up to but not including the zero terminator.
+Instead, the `strlen` function computes the length of the string up to but not
+including the zero terminator.
 
 ## Question 2
 
@@ -142,9 +151,9 @@ unwaited-for children.
 
 ## Question 4
 
-> To a programmer, a system call looks like any other call to a library function.
-> Is it important that a programmer know which library functions result in
-> system calls? Under what circumstances and why?
+> To a programmer, a system call looks like any other call to a library
+> function. Is it important that a programmer know which library functions
+> result in system calls? Under what circumstances and why?
 
 No, generally, it is not important to know which library functions result in
 system calls. Focusing on this aspect breaks the abstraction of the API and

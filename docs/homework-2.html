@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Homework 2</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="homework-2">Homework 2</h1>
+<p>Ishan Pranav</p>
+<p>October 2, 2024</p>
+<p>Professor Yang Tang</p>
+<p>CSCI 202 Operating Systems</p>
+<h2 id="question-1">Question 1</h2>
+<blockquote>
+<p>Alice has the impression that “arrays are the same as pointers” in C, so she
+writes the following program to test if that’s really the case.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">size_t</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *c)</span> 
+{ 
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">sizeof</span>(c); 
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">const</span> <span class="hljs-type">char</span> a[] = <span class="hljs-string">&quot;Hello, CS202!&quot;</span>; 
+    <span class="hljs-type">const</span> <span class="hljs-type">char</span> *b = <span class="hljs-string">&quot;Hello, CS202!&quot;</span>; 
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;size of a is %lu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a)); <span class="hljs-comment">// (a)</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;size of b is %lu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(b)); <span class="hljs-comment">// (b)</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;f(a) returns %lu\n&quot;</span>, f(a));      <span class="hljs-comment">// (c)</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;f(b) returns %lu\n&quot;</span>, f(b));      <span class="hljs-comment">// (d)</span>
+}
+</code></pre>
+<blockquote>
+<p>Alice expects to see all four lines print 14. However, when she runs this
+program, she sees different results.</p>
+</blockquote>
+<h3 id="question-1-part-1">Question 1 Part 1</h3>
+<blockquote>
+<p>Which line(s) prints 14? Why?</p>
+</blockquote>
+<p>Only line (a) prints 14. Although arrays &quot;decay&quot; into pointers in C, they are
+actually treated differently from a language perspective. Since <code>a</code> is a
+stack-allocated array, the <code>sizeof</code> operator returns its size in bytes: 14.</p>
+<h3 id="question-1-part-2">Question 1 Part 2</h3>
+<blockquote>
+<p>What do other line(s) print? Why?</p>
+</blockquote>
+<p>Meanwhile, <code>b</code> is written as a pointer, not an array, so the <code>sizeof</code> operator
+returns the size of the pointer: for example, 8 on a 64-bit architecture. When
+<code>a</code> is passed to <code>f</code>, it &quot;decays&quot; into a pointer, so it too has size 8. Of
+course, when <code>b</code> is passed to <code>f</code> the result is 8 as well.</p>
+<h3 id="question-1-part-3">Question 1 Part 3</h3>
+<blockquote>
+<p>In fact, <code>sizeof</code> shouldn't be used to get the length of a string at all. Why?</p>
+</blockquote>
+<p>The <code>sizeof</code> operator should not be used to obtain the length of a string
+because strings may be stack allocated (like <code>a</code>), heap allocated, or stored as
+data (like <code>b</code>).</p>
+<p>Instead, the <code>strlen</code> function computes the length of the string up to but not
+including the zero terminator.</p>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>Bob just learned the exec family of system calls in his CS202 class, and he
+wants to try it out himself. So he writes the following program.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span> </span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;one&quot;</span>);                                <span class="hljs-comment">// (a)</span>
+    execl(<span class="hljs-string">&quot;/bin/echo&quot;</span>, <span class="hljs-string">&quot;/bin/echo&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-literal">NULL</span>); <span class="hljs-comment">// (b)</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;three&quot;</span>); 
+}
+</code></pre>
+<blockquote>
+<p>Bob expects to see “one” and “two” printed but not “three”. However, when he
+runs this program on the CIMS compute servers, only “two” is printed. He
+examines his screen carefully with his magnifying glass but still cannot find
+any trace of “one”. Bob gets so confused, so he turns to you for help.</p>
+</blockquote>
+<h3 id="question-2-part-1">Question 2 Part 1</h3>
+<blockquote>
+<p>Can you explain to Bob what’s happening here? Can you propose a way to make
+both “one” and “two” printed?</p>
+</blockquote>
+<p>By default, the standard output stream is buffered. Bob is using <code>printf</code>, which
+writes to the standard output stream. After the call the call to
+<code>printf(&quot;one&quot;)</code>, the string <code>&quot;one&quot;</code> has been written to the buffer, but not
+necessarily to the underlying output device.</p>
+<p>The call to <code>execl</code> replaces the current program and clears the existing process
+memory, including the buffer. The call to <code>execl</code> prints <code>&quot;two&quot;</code>. The remaining
+code does not execute because once <code>execl</code> succeeds, it does not restore the old
+program.</p>
+<p>To print both <code>&quot;one&quot;</code> and <code>&quot;two&quot;</code>, Bob can ensure that the buffer is written to
+the standard output stream by inserting the line <code>fflush(stdout);</code> between
+lines (a) and (b). Here, <code>fflush</code> &quot;flushes&quot; the standard output buffer.</p>
+<h3 id="question-2-part-2">Question 2 Part 2</h3>
+<blockquote>
+<p>Can you propose a way to make all “one”, “two”, and “three” printed?</p>
+</blockquote>
+<p>Bob can use <code>fork</code> to create a new process. The child process can make the call
+to <code>execl</code>, while the parent process can call <code>wait</code> to wait for the child
+process to terminate before printing <code>&quot;three&quot;</code>.</p>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span> </span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;one&quot;</span>);
+    fflush(<span class="hljs-built_in">stdout</span>);
+
+    <span class="hljs-type">pid_t</span> pid = fork();
+
+    <span class="hljs-keyword">if</span> (!pid)
+    {
+        execl(<span class="hljs-string">&quot;/bin/echo&quot;</span>, <span class="hljs-string">&quot;/bin/echo&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-literal">NULL</span>);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pid &gt; <span class="hljs-number">0</span>)
+    {
+        wait(<span class="hljs-literal">NULL</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;three&quot;</span>);
+    }
+}
+</code></pre>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>For each of the following system calls, give a condition that causes it to
+fail: <code>fork</code>, <code>exec</code>, and <code>wait</code>.</p>
+</blockquote>
+<ul>
+<li>The <code>fork</code> function fails when attempting to execeed the system's thread count
+limit.</li>
+<li>The <code>exec*</code> function fails when the path or file name argument refers to a
+file that does not exist.</li>
+<li>The <code>wait</code> function fails when the calling process does not have any
+unwaited-for children.</li>
+</ul>
+<h2 id="question-4">Question 4</h2>
+<blockquote>
+<p>To a programmer, a system call looks like any other call to a library
+function. Is it important that a programmer know which library functions
+result in system calls? Under what circumstances and why?</p>
+</blockquote>
+<p>No, generally, it is not important to know which library functions result in
+system calls. Focusing on this aspect breaks the abstraction of the API and
+requires the programmer to rely on assumptions about the underlying
+implementation.</p>
+<p>However, in high-performance applications or systems programming tasks, it is
+important to identify system calls and the library functions that invoke them
+because system calls result in <em>trap</em> and <em>return-from-trap</em> instructions that
+switch between user and kernel mode. These instructions are expensive and can
+damage performance if called often. As a result, applications and libraries seek
+to reduce system calls, by using buffers for example.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://port70.net/~nsz/c/c99/n1256.html">The C99 standard, 2007 committee draft</a></li>
+<li>Linux manual pages
+<ul>
+<li><a href="https://www.man7.org/linux/man-pages/man3/exec.3.html">exec(3) - execute a file</a></li>
+<li><a href="https://www.man7.org/linux/man-pages/man2/fork.2.html">fork(2) - create a child process</a></li>
+<li><a href="https://www.man7.org/linux/man-pages/man2/wait.2.html">wait(2) - wait for process to change state</a></li>
+</ul>
+</li>
+</ul>
+
+            
+            
+        </body>
+        </html>
