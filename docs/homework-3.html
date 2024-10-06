@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Homework 3</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="homework-3">Homework 3</h1>
+<p>Ishan Pranav</p>
+<p>October 16, 2024</p>
+<p>Professor Yang Tang</p>
+<p>CSCI 202 Operating Systems</p>
+<h2 id="question-1">Question 1</h2>
+<blockquote>
+<p>Alice has learned that the function <code>strncpy</code> can be used to copy a string. So
+she writes the following code to try it out. However, the result isn’t what
+she expects.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">char</span> str1[<span class="hljs-number">4</span>] = <span class="hljs-string">&quot;1234&quot;</span>;
+    <span class="hljs-type">char</span> str2[<span class="hljs-number">4</span>];
+
+    <span class="hljs-built_in">strncpy</span>(str2, str1, <span class="hljs-keyword">sizeof</span>(str2));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;str2 = %s\n&quot;</span>, str2);
+}
+</code></pre>
+<blockquote>
+<p>Can you explain this issue to Alice and help her correct it?</p>
+</blockquote>
+<p>The <code>strncpy</code> function copies a fixed-length string, returning a pointer to the
+end of the string. The call to <code>strncpy</code> function writes at most <code>sizeof(str2)</code>
+bytes to the output buffer <code>str2</code>, followed by at least one <code>NUL</code> terminator
+(<code>\0</code>). However, since <code>sizeof(str2)</code> is 4, the <code>str2</code> buffer is not large
+enough to contain the 5 characters written. The result is a buffer overflow,
+which is undefined behavior. To fix this issue, Alice can increase the size of
+<code>str2</code> to at least 5 and pass the literal value <code>4</code> as the size, rather than
+<code>sizeof(str2)</code> as the argument to <code>strncpy</code>.</p>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>Now, Alice wants to see if <code>strncpy</code> can be used to copy other types of
+arrays. So she writes the following code. Since <code>strncpy</code> only accepts <code>char*</code>
+arguments, she uses a trick: She casts the integer arrays to <code>char*</code> type.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span> </span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+{ 
+    <span class="hljs-type">int</span> arr1[<span class="hljs-number">4</span>] = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> };
+    <span class="hljs-type">int</span> arr2[<span class="hljs-number">4</span>];
+
+    <span class="hljs-built_in">strncpy</span>((<span class="hljs-type">char</span>*)arr2, (<span class="hljs-type">char</span>*)arr1, <span class="hljs-keyword">sizeof</span>(arr2));
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;arr2 = &quot;</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, arr2[i]);
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+}
+</code></pre>
+<blockquote>
+<p>Once again, this code does not work: only the first element of <code>arr1</code> is
+copied to <code>arr2</code>.</p>
+</blockquote>
+<h3 id="question-2-part-1">Question 2 Part 1</h3>
+<blockquote>
+<p>Can you explain to Alice what’s happening here?</p>
+</blockquote>
+<p>The <code>strncpy</code> function copies <em>bytes</em>, not necessarily values. This call to
+<code>strncpy</code> passes <code>arr2</code> as a pointer to a zero-terminated byte string.</p>
+<p>Since Alice notices that only the first byte is copied, we can assume something
+about the endianness of the machine. On this machine, the first byte of <code>arr1</code>
+is <code>0x01</code>, followed by <code>0x00</code>, <code>0x00</code>, and <code>0x00</code> (since the first element is
+<code>1</code>). This means that the byte <code>0x01</code> is copied to <code>arr2</code>, then a zero is
+encountered, so the copying stops after the first <code>0x00</code>. Then, <code>strncpy</code>
+initializes the remainder of <code>arr2</code> with zero bytes.</p>
+<p>The result is that <code>arr2</code> contains the values <code>{ 1, 0, 0, 0 }</code>.</p>
+<h3 id="question-2-part-2">Question 2 Part 2</h3>
+<blockquote>
+<p>Instead of <code>strncpy</code>, what function should be used to copy an array?</p>
+</blockquote>
+<p>Instead of <code>strncpy</code>, Alice can use <code>memcpy</code>, which does not stop copying when a
+zero is encountered.</p>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>When an interrupt or a system call transfers control to the operating system,
+a kernel stack area separate from the stack of the interrupted process is
+generally used. Why?</p>
+</blockquote>
+<p>When an interrupt or system call transfers control to the operating system, a
+separate kernal stack area is used to protect the state of user-space programs.</p>
+<p>If the state were not kept separate, then user-space programs may become
+corrupted. Keeping a separate kernal-space stack preserves the illusion that the
+user-space applications have control over the computer's memory.</p>
+<h2 id="question-4">Question 4</h2>
+<blockquote>
+<p>In the following figure, three process states are shown.</p>
+</blockquote>
+<p><img src="https://github.com/ishanpranav/csci-202-operating-systems/blob/master/images/homework-3-4.png?raw=true" alt="Process state diagram" title="Process states"></p>
+<blockquote>
+<p>In theory, with three states, there could be six transitions, two out of each
+state. However, only four transitions are shown. Are there any circumstances
+in which either or both of the missing transitions might occur?</p>
+</blockquote>
+<p>In theory, with three states, there could be six transitions. However, the
+blocked-to-running and ready-to-blocked states are missing.</p>
+<p>Blocked-to-running may not occur, because the process cannot begin running until
+it is started by the scheduler. Similarly, ready-to-blocked is impossible since
+a process that has not yet been started cannot be blocked.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Linux manual pages
+<ul>
+<li><a href="https://www.man7.org/linux/man-pages/man3/strncpy.3p.html">strncpy(3p) - copy fixed length string</a></li>
+</ul>
+</li>
+</ul>
+
+            
+            
+        </body>
+        </html>
