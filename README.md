@@ -1,6 +1,7 @@
 # Operating Systems
 
-A collection of problem set solutions for the NYU CSCI 202 Operating Systems course.
+A collection of problem set solutions for the NYU CSCI 202 Operating Systems
+course.
 
 ## Contents
 
