@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Homework 4</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="homework-4">Homework 4</h1>
+<p>Ishan Pranav</p>
+<p>October 30, 2024</p>
+<p>Professor Yang Tang</p>
+<p>CSCI 202 Operating Systems</p>
+<h2 id="question-1">Question 1</h2>
+<p>Alice has written the following code, which contains a common bug in C
+programming.</p>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> 
+{</span>
+    <span class="hljs-type">int</span> id;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span>* <span class="hljs-title">inner_box</span>;</span>
+};
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">insert_box</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> box* outer, <span class="hljs-keyword">struct</span> box inner)</span> 
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;insert box: placing id %d inside id %d\n&quot;</span>, inner.id, outer-&gt;id);
+
+    outer-&gt;inner_box = &amp;inner; <span class="hljs-comment">// line (a)</span>
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">print_box</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> box* first, <span class="hljs-type">int</span> level)</span> 
+{
+    <span class="hljs-type">int</span> i;
+    
+    <span class="hljs-keyword">if</span> (!first)
+    {
+        <span class="hljs-keyword">return</span>;
+    }
+    
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; level; ++i) 
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;- &quot;</span>);
+    }
+    
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;id: %d\n&quot;</span>, first-&gt;id);
+    print_box(first-&gt;inner_box, level + <span class="hljs-number">1</span>);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+{
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> <span class="hljs-title">box1</span> =</span> { .id = <span class="hljs-number">37</span>, .inner_box = <span class="hljs-literal">NULL</span> };
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> <span class="hljs-title">box2</span> =</span> { .id = <span class="hljs-number">12</span>, .inner_box = <span class="hljs-literal">NULL</span> };
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> <span class="hljs-title">box3</span> =</span> { .id = <span class="hljs-number">19</span>, .inner_box = <span class="hljs-literal">NULL</span> };
+    
+    insert_box(&amp;box1, box2);
+    insert_box(&amp;box2, box3);
+    print_box(&amp;box1, <span class="hljs-number">0</span>);
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="question-1-part-1">Question 1 Part 1</h3>
+<blockquote>
+<p>Describe at a high level what this code is intended to do. What output did
+Alice expect the program to generate?</p>
+</blockquote>
+<p>The code simulates 3 boxes: 1, 2, and 3, and prints the state of the boxes. Box
+2 is inside of Box 1 and Box 3 inside of Box 2.</p>
+<h3 id="question-1-part-2">Question 1 Part 2</h3>
+<blockquote>
+<p>What happens when the program is run?</p>
+</blockquote>
+<p>When the program is run, the process recurses infinitely: Box 1 contains Box 3,
+which contains Box 1.</p>
+<h3 id="question-1-part-3">Question 1 Part 3</h3>
+<blockquote>
+<p>What is the error in Alice’s reasoning?</p>
+</blockquote>
+<p>On line (a), Alice assigns <code>&amp;inner</code> into <code>outer-&gt;inner_box</code>. Here, <code>&amp;inner</code> is
+the address of a function argument, which is a local variable. Once the
+<code>insert_box</code> function terminates, its stack frame is deallocated, and the
+reference to <code>inner</code> is broken. As a result, <code>outer-&gt;inner_box</code> is an invalid
+pointer.</p>
+<p>Later, the <code>print_box</code> function dereferences <code>outer-&gt;inner_box</code>, which invokes
+undefined behavior.</p>
+<p>Instead, Alice should receive the pointer as an argument to <code>insert_box</code>.</p>
+<h3 id="question-1-part-4">Question 1 Part 4</h3>
+<blockquote>
+<p>Change this program to produce the intended output.</p>
+</blockquote>
+<p>We can redefine and reimplement <code>insert_box</code>:</p>
+<pre><code class="language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">insert_box</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> box* outer, <span class="hljs-keyword">struct</span> box* inner)</span> 
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;insert box: placing id %d inside id %d\n&quot;</span>, inner-&gt;id, outer-&gt;id);
+
+    outer-&gt;inner_box = inner;
+}
+</code></pre>
+<p>Then reimplmenet <code>main</code> to fix the issue:</p>
+<pre><code class="language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+{
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> <span class="hljs-title">box1</span> =</span> { .id = <span class="hljs-number">37</span>, .inner_box = <span class="hljs-literal">NULL</span> };
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> <span class="hljs-title">box2</span> =</span> { .id = <span class="hljs-number">12</span>, .inner_box = <span class="hljs-literal">NULL</span> };
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">box</span> <span class="hljs-title">box3</span> =</span> { .id = <span class="hljs-number">19</span>, .inner_box = <span class="hljs-literal">NULL</span> };
+    
+    insert_box(&amp;box1, &amp;box2);
+    insert_box(&amp;box2, &amp;box3);
+    print_box(&amp;box1, <span class="hljs-number">0</span>);
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>When a computer is being developed, it is usually first simulated by a program
+that runs one instruction at a time. Even multiprocessors are simulated
+strictly sequentially like this. Is it possible for a race condition to occur
+when there are no simultaneous events like this?</p>
+</blockquote>
+<p>Yes, it is possible for a race condition on a sequential processor. A single
+processor does not guarantee a single process. For example, there may be two
+logical processes executing on the sequential computer, with context switching
+between the two processes. In this case, each process may depend on and modify
+shared state, causing a race condition is possible.</p>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>The producer-consumer problem can be extended to a system with multiple
+producers and consumers that write (or read) to (from) one shared buffer.
+Assume that each producer and consumer runs in its own process. Will the
+solution presented using semaphores, work for this system?</p>
+</blockquote>
+<p>Yes, we can solve the producer-consumer problem in the general case with
+multiple producers and multiple consumers. However, the synchronization of the
+semaphores will need to be precise and safe to ensure that no two producers
+write to the buffer at the same time, and that no consumer misses a message.</p>
+
+            
+            
+        </body>
+        </html>

@@ -143,3 +143,8 @@ shared state, causing a race condition is possible.
 > producers and consumers that write (or read) to (from) one shared buffer.
 > Assume that each producer and consumer runs in its own process. Will the
 > solution presented using semaphores, work for this system?
+
+Yes, we can solve the producer-consumer problem in the general case with
+multiple producers and multiple consumers. However, the synchronization of the
+semaphores will need to be precise and safe to ensure that no two producers
+write to the buffer at the same time, and that no consumer misses a message.
