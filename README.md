@@ -9,3 +9,4 @@ course.
 - [Homework 2](https://ishanpranav.github.io/csci-202-operating-systems/homework-2)
 - [Homework 3](https://ishanpranav.github.io/csci-202-operating-systems/homework-3)
 - [Homework 4](https://ishanpranav.github.io/csci-202-operating-systems/homework-4)
+- [Homework 5](https://ishanpranav.github.io/csci-202-operating-systems/homework-5)
