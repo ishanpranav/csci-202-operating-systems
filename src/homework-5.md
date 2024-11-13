@@ -176,8 +176,16 @@ line (b) before line (a).
 > their arrival caused unexpected traffic congestion. You, a police officer,
 > observed this scenario and drew the picture below.
 
-![Traffic problem, first part](../images/homework-5-4-1.png "Traffic problem")
+![Traffic problem, first part](../images/homework-5-4-0-1.png "Traffic problem")
 
-![Traffic problem, second part](../images/homework-5-4-2.png "Traffic problem")
+> Then, you quickly responded to the media that this scenario was a
+> **deadlock**. The four trucks can be viewed as the processes in the system, and the shared resources are shown in the figure below. The zones marked **1**, **2**,
+> **3**, and **4** are the shared resources.
+
+![Traffic problem, second part](../images/homework-5-4-0-2.png "Traffic problem")
+
+### Question 4 Part 1
+
+### Question 4 Part 3
 
 ![Traffic problem, third part](../images/homework-5-4-3.png "Traffic problem")
