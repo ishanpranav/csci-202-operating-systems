@@ -27,7 +27,7 @@ void insert_box(struct box* outer, struct box inner)
 {
     printf("insert box: placing id %d inside id %d\n", inner.id, outer->id);
 
-    outer->inner_box = &inner; // line (a)
+    outer->inner_box = &inner; // (a)
 }
 
 void print_box(struct box* first, int level) 
