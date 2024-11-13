@@ -179,13 +179,59 @@ line (b) before line (a).
 ![Traffic problem, first part](../images/homework-5-4-0-1.png "Traffic problem")
 
 > Then, you quickly responded to the media that this scenario was a
-> **deadlock**. The four trucks can be viewed as the processes in the system, and the shared resources are shown in the figure below. The zones marked **1**, **2**,
-> **3**, and **4** are the shared resources.
+> **deadlock**. The four trucks can be viewed as the processes in the system,
+> and the shared resources are shown in the figure below. The zones marked
+> **1**, **2**, **3**, and **4** are the shared resources.
 
 ![Traffic problem, second part](../images/homework-5-4-0-2.png "Traffic problem")
 
 ### Question 4 Part 1
 
+> Why are the four necessary conditions of a resource deadlock all satisfied in
+> this scenario? Draw a resource allocation graph to elaborate on your answer.
+
+The four conditions for a resource deadlock are mutual exclusion, hold-and-wait,
+no preemption, and circular wait.
+
+Each road is available to only one truck at a time. It is possible for a truck
+to request more space. Once a truck occupies part of the road, it cannot be
+forcibly moved. There is a circular arangement to the trucks, meaning that each
+is waiting for a resource held by the next.
+
+| Truck | Road |
+|-------|------|
+| A | holds 1, requests 4 |
+| B | holds 4, requests 3 |
+| C | holds 3, requests 2 |
+| D | holds 2, requests 1 |
+
+### Question 4 Part 2
+
+> The government of Old Essex soon issued legislation that every truck entering
+> the city must have a length smaller than the width of the City Hall, assuming
+> that the City Hall is square and that only one car can enter a road at a time.
+> Which necessary condition of a resource deadlock would this legislation
+> eliminate?
+
+This legislation would mitigate the hold-and-wait problem.
+
 ### Question 4 Part 3
 
 ![Traffic problem, third part](../images/homework-5-4-3.png "Traffic problem")
+
+> The government of Old Essex soon discovered that the legislation in part (2)
+> did not work because there could be more than one car occupying a road.
+> In response, the government installed traffic lights at some critical points
+> to regulate the traffic, as shown in the above figure. Also, there are traffic
+> detectors embedded in the roads around the City Hall. The traffic lights and
+> the detectors work together as follows.
+
+- By default, all traffic lights are set to green.
+- If the detectors detect that three of the traffic-detecting zones are
+occupied, the traffic light in the remaining zone turns red immediately.
+
+> Assume that no two cars would step into the traffic detecting zone at the
+> same instant. Which necessary condition of a resource deadlock would the
+> traffic lights eliminate?
+
+These new rules would solve the mutual exclusion condition.

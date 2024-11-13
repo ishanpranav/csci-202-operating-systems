@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Homework 5</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="homework-5">Homework 5</h1>
+<p>Ishan Pranav</p>
+<p>November 13, 2024</p>
+<p>Professor Yang Tang</p>
+<p>CSCI 202 Operating Systems</p>
+<h2 id="question-1">Question 1</h2>
+<blockquote>
+<p>Alice tries to pass an argument from the main thread to the child thread.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span> </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> *<span class="hljs-title function_">run</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span> 
+{
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;child: %d\n&quot;</span>, *((<span class="hljs-type">int</span> *)arg));
+  
+  *((<span class="hljs-type">int</span> *)arg) = <span class="hljs-number">2</span>;
+
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;child: %d\n&quot;</span>, *((<span class="hljs-type">int</span> *)arg));
+  pthread_exit(<span class="hljs-literal">NULL</span>);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">pthread_t</span> tid;
+    <span class="hljs-type">int</span> arg = <span class="hljs-number">1</span>;
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;main: %d\n&quot;</span>, arg);
+    pthread_create(&amp;tid, <span class="hljs-literal">NULL</span>, run, &amp;arg);
+    pthread_join(tid, <span class="hljs-literal">NULL</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;main: %d\n&quot;</span>, arg);
+}
+</code></pre>
+<h3 id="question-1-part-1">Question 1 Part 1</h3>
+<blockquote>
+<p>What’s the output of this program?</p>
+</blockquote>
+<pre><code class="language-sh">main: 1
+child: 1
+child: 2
+main: 2
+</code></pre>
+<h3 id="question-1-part-2">Question 1 Part 2</h3>
+<blockquote>
+<p>Alice thinks that each thread should have a separate stack. However, changing
+<code>arg</code> in the child thread also changes the value in the main thread. What’s
+the error in Alice’s reasoning?</p>
+</blockquote>
+<p>Alice is correct that each thread has a separate stack. However, <code>arg</code> is stored
+on the main thread's stack, and a pointer to <code>arg</code> is passed as an argument to
+each thread. As a result, modifying <code>arg</code> via the pointer will modify the value
+stored on the main thread's stack, which is a shared resource in this case.</p>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>In order to avoid accessing the stack of the main thread, Alice decides to
+make a copy of <code>arg</code>’s value in the child thread.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> *<span class="hljs-title function_">run</span><span class="hljs-params">(<span class="hljs-type">void</span> *arg)</span>
+{ 
+    <span class="hljs-type">int</span> index = *((<span class="hljs-type">int</span>*)arg);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;My index is %d\n&quot;</span>, index);
+    pthread_exit(<span class="hljs-literal">NULL</span>);
+} 
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">pthread_t</span> tid[<span class="hljs-number">5</span>];                           <span class="hljs-comment">// (a)</span>
+    
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i)
+    {
+        pthread_create(&amp;tid[i], <span class="hljs-literal">NULL</span>, run, &amp;i); <span class="hljs-comment">// (b)</span>
+    }
+    
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i)
+    {
+        pthread_join(tid[i], <span class="hljs-literal">NULL</span>);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Is there any problem with this code? If so, can you help Alice correct it?</p>
+</blockquote>
+<p>Yes, the issue is that a pointer to a temporary value <code>i</code> is passed as an
+argument to each child thread. However, copying <code>i</code> via the <code>arg</code> pointer may
+occur out of order. This means that <code>i</code> may have changed by the time a child
+thread executes.</p>
+<p>We can solve this problem by storing the index for each thread in its own
+memory location.</p>
+<p>Insert after line (a):</p>
+<pre><code class="language-c">    <span class="hljs-type">int</span> index[<span class="hljs-number">5</span>];
+</code></pre>
+<p>Replace line (b):</p>
+<pre><code class="language-c">        index[i] = i;
+
+        pthread_create(&amp;tid[i], <span class="hljs-literal">NULL</span>, run, &amp;index[i]);
+</code></pre>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>Alice and Bob each have an account in a bank. Bob wants to transfer money to
+Alice.</p>
+</blockquote>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+
+<span class="hljs-type">double</span> alice_balance, bob_balance;
+
+<span class="hljs-type">static</span> <span class="hljs-type">pthread_mutex_t</span> mutex = PTHREAD_MUTEX_INITIALIZER;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">transfer_bob_to_alice</span><span class="hljs-params">(<span class="hljs-type">double</span> trans)</span>
+{ 
+    <span class="hljs-keyword">if</span> (bob_balance &lt; trans)    <span class="hljs-comment">// line (a)</span>
+    { 
+        <span class="hljs-keyword">return</span>; 
+    }
+
+    pthread_mutex_lock(&amp;mutex); <span class="hljs-comment">// line (b)</span>
+
+    bob_balance -= trans; 
+    alice_balance += trans; 
+
+    pthread_mutex_unlock(&amp;mutex); 
+}
+</code></pre>
+<blockquote>
+<p>Unfortunately, the implementation of the function <code>transfer_bob_to_alice</code> is incorrect</p>
+</blockquote>
+<h3 id="question-3-part-1">Question 3 Part 1</h3>
+<blockquote>
+<p>What’s wrong?</p>
+</blockquote>
+<p>The implementation of <code>transfer_bob_to_alice</code> contains a race condition. It
+reads <code>bob_balance</code> without acquiring a lock. It is possible that two threads
+concurrently execute <code>transfer_bob_to_alice</code> and make a transfer, even if Bob's
+balance is only sufficient for one such transfer.</p>
+<p>The first thread checks to confirm that Bob's balance is sufficient before
+making a transfer. Then, a thread context-switch occurs and the second thread,
+makes the same assertion. Suppose the first thread acquires the lock first and
+completes the transfer. Then, the second thread acquires the lock and makes
+another transfer. Both transfers succeed, even if the first transfer made Bob's
+balance insufficient for the second.</p>
+<blockquote>
+<p>State the fix in one sentence.</p>
+</blockquote>
+<p>We need to acquire a lock before checking Bob's balance; that is, we should move
+line (b) before line (a).</p>
+<h2 id="question-4">Question 4</h2>
+<blockquote>
+<p>In the city of Old Essex, there are four one-way roads, namely <strong>Road 1</strong>,
+<strong>Road 2</strong>, <strong>Road 3</strong>, and <strong>Road 4</strong>, around the City Hall.
+One day, four foreign, oversized trucks arrived in the city. Unfortunately,
+their arrival caused unexpected traffic congestion. You, a police officer,
+observed this scenario and drew the picture below.</p>
+</blockquote>
+<p><img src="https://github.com/ishanpranav/csci-202-operating-systems/blob/master/images/homework-5-4-0-1.png" alt="Traffic problem, first part" title="Traffic problem"></p>
+<blockquote>
+<p>Then, you quickly responded to the media that this scenario was a
+<strong>deadlock</strong>. The four trucks can be viewed as the processes in the system,
+and the shared resources are shown in the figure below. The zones marked
+<strong>1</strong>, <strong>2</strong>, <strong>3</strong>, and <strong>4</strong> are the shared resources.</p>
+</blockquote>
+<p><img src="https://github.com/ishanpranav/csci-202-operating-systems/blob/master/images/homework-5-4-0-2.png" alt="Traffic problem, second part" title="Traffic problem"></p>
+<h3 id="question-4-part-1">Question 4 Part 1</h3>
+<blockquote>
+<p>Why are the four necessary conditions of a resource deadlock all satisfied in
+this scenario? Draw a resource allocation graph to elaborate on your answer.</p>
+</blockquote>
+<p>The four conditions for a resource deadlock are mutual exclusion, hold-and-wait,
+no preemption, and circular wait.</p>
+<p>Each road is available to only one truck at a time. It is possible for a truck
+to request more space. Once a truck occupies part of the road, it cannot be
+forcibly moved. There is a circular arangement to the trucks, meaning that each
+is waiting for a resource held by the next.</p>
+<table>
+<thead>
+<tr>
+<th>Truck</th>
+<th>Road</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>holds 1, requests 4</td>
+</tr>
+<tr>
+<td>B</td>
+<td>holds 4, requests 3</td>
+</tr>
+<tr>
+<td>C</td>
+<td>holds 3, requests 2</td>
+</tr>
+<tr>
+<td>D</td>
+<td>holds 2, requests 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="question-4-part-2">Question 4 Part 2</h3>
+<blockquote>
+<p>The government of Old Essex soon issued legislation that every truck entering
+the city must have a length smaller than the width of the City Hall, assuming
+that the City Hall is square and that only one car can enter a road at a time.
+Which necessary condition of a resource deadlock would this legislation
+eliminate?</p>
+</blockquote>
+<p>This legislation would mitigate the hold-and-wait problem.</p>
+<h3 id="question-4-part-3">Question 4 Part 3</h3>
+<p><img src="https://github.com/ishanpranav/csci-202-operating-systems/blob/master/images/homework-5-4-3.png" alt="Traffic problem, third part" title="Traffic problem"></p>
+<blockquote>
+<p>The government of Old Essex soon discovered that the legislation in part (2)
+did not work because there could be more than one car occupying a road.
+In response, the government installed traffic lights at some critical points
+to regulate the traffic, as shown in the above figure. Also, there are traffic
+detectors embedded in the roads around the City Hall. The traffic lights and
+the detectors work together as follows.</p>
+</blockquote>
+<ul>
+<li>By default, all traffic lights are set to green.</li>
+<li>If the detectors detect that three of the traffic-detecting zones are
+occupied, the traffic light in the remaining zone turns red immediately.</li>
+</ul>
+<blockquote>
+<p>Assume that no two cars would step into the traffic detecting zone at the
+same instant. Which necessary condition of a resource deadlock would the
+traffic lights eliminate?</p>
+</blockquote>
+<p>These new rules would solve the mutual exclusion condition.</p>
+
+            
+            
+        </body>
+        </html>
