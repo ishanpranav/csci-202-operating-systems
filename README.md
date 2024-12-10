@@ -11,3 +11,4 @@ course.
 - [Homework 4](https://ishanpranav.github.io/csci-202-operating-systems/homework-4)
 - [Homework 5](https://ishanpranav.github.io/csci-202-operating-systems/homework-5)
 - [Homework 6](https://ishanpranav.github.io/csci-202-operating-systems/homework-6)
+- [Homework 7](https://ishanpranav.github.io/csci-202-operating-systems/homework-7)
