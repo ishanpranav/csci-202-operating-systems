@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Homework 7</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="homework-7">Homework 7</h1>
+<p>Ishan Pranav</p>
+<p>December 11, 2024</p>
+<p>Professor Yang Tang</p>
+<p>CSCI 202 Operating Systems</p>
+<h2 id="question-1">Question 1</h2>
+<p>Alice has written the following code to play with a process's memory.</p>
+<pre><code class="language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{ 
+    <span class="hljs-type">char</span> a = <span class="hljs-string">&#x27;a&#x27;</span>; 
+    <span class="hljs-type">char</span>* b = &amp;a; 
+    <span class="hljs-type">char</span>* c = <span class="hljs-string">&quot;c&quot;</span>; 
+    <span class="hljs-type">char</span> d[] = <span class="hljs-string">&quot;d&quot;</span>; 
+    <span class="hljs-type">char</span>* e = d; 
+
+    a = <span class="hljs-string">&#x27;A&#x27;</span>;     <span class="hljs-comment">// (a) </span>
+    b[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;B&#x27;</span>;  <span class="hljs-comment">// (b) </span>
+    c[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;C&#x27;</span>;  <span class="hljs-comment">// (c) </span>
+    d[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;D&#x27;</span>;  <span class="hljs-comment">// (d) </span>
+    e[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;E&#x27;</span>;  <span class="hljs-comment">// (e) </span>
+}
+</code></pre>
+<blockquote>
+<p>For each line (a) through (e), will it cause a segmentation fault? Why?</p>
+</blockquote>
+<p>Line (a) does not cause a segmentation violation. It reassigns the character
+variable <code>a</code> from <code>'a'</code> to <code>'A'</code>.</p>
+<p>Line (b) does not cause a segmentation violation. It reassigns the character
+variable <code>a</code> from <code>'A'</code> to <code>'B'</code> via one level of indirection.</p>
+<p>Line (c) may cause a segmentation violation. It attempts to assign a character
+with in a string literal, which is undefined behavior. String literals are often
+stored in the read-only data segment of a program and should not be modified.</p>
+<p>Line (d) does not cause a segmentation violation. It reassigns the first
+character in the array <code>D</code> from <code>'d'</code> to <code>'D'</code>.</p>
+<p>Line (e) does not cause a segmentation violation. It is equivalent to line (d)
+via pointer aliasing.</p>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>Name one advantage of hard links over symbolic links and one advantage of
+symbolic links over hard links.</p>
+</blockquote>
+<p>One advantage of hard links is that they remain valid even after the referenced
+file is deleted.</p>
+<p>One advantage of symbolic links is that they can link to files across drives and
+file systems.</p>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>For an external USB drive attached to a computer, which is more suitable: a
+write-through cache or a write-back cache?</p>
+</blockquote>
+<p>A write-through cache is more suitable for an external USB drive attached to a
+computer since it guarantees that the data are written to the disk in the event
+that it is removed prematurely.</p>
+<h2 id="question-4">Question 4</h2>
+<p>Consider a RAID level 5 organization comprising five disks, with the parity for
+sets of four blocks on four disks stored on the fifth disk. How many blocks are
+accessed in order to perform the following?</p>
+<h3 id="question-4-part-1">Question 4 Part 1</h3>
+<blockquote>
+<p>A write of one block of data.</p>
+</blockquote>
+<p>A write of 1 block requires 4 blocks to be accessed under RAID 5.</p>
+<h3 id="question-4-part-2">Question 4 Part 2</h3>
+<blockquote>
+<p>A write of seven continuous blocks of data beginning at a four-block boundary.</p>
+</blockquote>
+<p>Under RAID 5, a write of seven contiguous blocks of data beginning at a
+four-block boundary requires 18 blocks to be accessed.</p>
+
+            
+            
+        </body>
+        </html>

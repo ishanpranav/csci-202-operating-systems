@@ -19,7 +19,7 @@ CSCI 202 Operating Systems
 typedef struct Record
 {
     unsigned char v1[3]; // "Bob"
-    unsigned int v2; // 76543210
+    unsigned int v2;     // 76543210
 } Record;
 
 int main()
